@@ -2,14 +2,6 @@
 // Inclui o arquivo de conexão
 include 'conexao-banco.php';
 
-// // Verifique se a variável $pdo foi definida, ou seja, se a conexão foi bem-sucedida
-// if (isset($pdo)) {
-//     echo "A conexão com o banco de dados foi estabelecida com sucesso!";
-// } else {
-//     echo "A conexão falhou.";
-// }
-// 
-
 // Consulta para selecionar todos os clientes
 $stmt = $pdo->query("SELECT nome_cliente, data_nasc, num_cnh, rua, numero_telefone
 FROM cliente

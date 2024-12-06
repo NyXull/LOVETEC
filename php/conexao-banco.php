@@ -19,5 +19,4 @@ try {
     // Se ocorrer um erro, exibe a mensagem de erro
     // echo "Erro de conexão: " . $e->getMessage();
 }
-
 ?>
