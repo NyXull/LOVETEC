@@ -18,12 +18,6 @@ while ($cliente = $stmt->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
     echo "<td>" . htmlspecialchars($cliente['id']) . "</td>";
     echo "<td>" . htmlspecialchars($cliente['nome_cliente']) . "</td>";
-    echo "<td>" . htmlspecialchars($cliente['data_nasc']) . "</td>";
-    echo "<td>" . htmlspecialchars($cliente['num_cnh']) . "</td>";
-    echo "<td>" . htmlspecialchars($cliente['id_locacao']) . "</td>";
-    echo "<td>" . htmlspecialchars($cliente['id_veiculo']) . "</td>";
-    echo "<td>" . htmlspecialchars($cliente['id_endereco']) . "</td>";
-    echo "<td>" . htmlspecialchars($cliente['id_telefone']) . "</td>";
     echo "</tr>";
 }
 
