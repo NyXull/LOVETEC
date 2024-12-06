@@ -37,10 +37,10 @@ INSERT INTO LOVETEC.Locacao (data_inicial, data_final, valor_diaria, valor_final
 ('2024-12-10', '2024-12-12', 150.00, 300.00, 3);
 
 -- Inserindo clientes
-INSERT INTO LOVETEC.Cliente (nome_cliente, data_nasc, num_cnh, id_endereco, id_telefone) VALUES
-('Carlos Silva', '1985-05-12', 123456789, 1, 1),
-('Ana Pereira', '1990-11-20', 987654321, 2, 2),
-('Pedro Souza', '1982-02-15', 112233445, 3, 3);
+INSERT INTO LOVETEC.Cliente (nome_cliente, data_nasc, num_cnh, email, senha, id_endereco, id_telefone) VALUES
+('Carlos Silva', '1985-05-12', 123456789, 'carlossilva@gmail.com', 'supersenha', 1, 1),
+('Ana Pereira', '1990-11-20', 987654321, 'anapereira@gmail.com', 'supersenha', 2, 2),
+('Pedro Souza', '1982-02-15', 112233445, 'pedrosouza@gmail.com', 'supersenha', 3, 3);
 
 -- Inserindo locadoras
 INSERT INTO LOVETEC.Locadora (nome_locadora, cnpj, id_endereco, id_telefone) VALUES

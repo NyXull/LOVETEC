@@ -16,6 +16,8 @@
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Email</th>
+                <th>Senha</th>  
                 <th>Data de Nascimento</th>
                 <th>Número de CNH</th>
                 <th>Endereço</th>

@@ -58,6 +58,8 @@ CREATE TABLE IF NOT EXISTS LOVETEC.Cliente (
  nome_cliente VARCHAR(100) NOT NULL,
  data_nasc DATE NOT NULL,
  num_cnh INT NOT NULL, UNIQUE(num_cnh),
+ email VARCHAR(100) NOT NULL, UNIQUE(email),
+ senha VARCHAR(255),
  id_endereco INT NOT NULL,
  id_telefone INT NOT NULL, PRIMARY KEY (id_cliente), FOREIGN KEY (id_endereco) REFERENCES LOVETEC.Endereco (id_endereco), FOREIGN KEY (id_telefone) REFERENCES LOVETEC.Telefone (id_telefone)
 );
@@ -75,9 +77,17 @@ CREATE TABLE IF NOT EXISTS LOVETEC.Locadora (
 CREATE TABLE IF NOT EXISTS LOVETEC.Funcionario (
  id_funcionario INT NOT NULL AUTO_INCREMENT,
  nome_funcionario VARCHAR(100) NOT NULL,
- email VARCHAR(100) NOT NULL,
+ email VARCHAR(100) NOT NULL, UNIQUE(email),
  senha VARCHAR(255) NOT NULL,
  id_locadora INT NOT NULL,
  id_endereco INT NOT NULL,
  id_telefone INT NOT NULL, PRIMARY KEY (id_funcionario), FOREIGN KEY (id_locadora) REFERENCES LOVETEC.Locadora (id_locadora), FOREIGN KEY (id_endereco) REFERENCES LOVETEC.Endereco (id_endereco), FOREIGN KEY (id_telefone) REFERENCES LOVETEC.Telefone (id_telefone)
+);
+
+-- Tabela Sessao
+CREATE TABLE IF NOT EXISTS LOVETEC.Sessao (
+ id_sessao INT NOT NULL AUTO_INCREMENT,
+ id_usuario INT NOT NULL,
+ tipo_usuario ENUM('cliente', 'funcionario') NOT NULL,
+ PRIMARY KEY (id_sessao)
 );

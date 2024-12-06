@@ -1,0 +1,72 @@
+<?php
+// Inicia a sessão
+session_start();
+
+// Conexão com o banco de dados
+// Suponha que você tenha uma variável $conn com a conexão ao banco
+
+// Recebe os dados do formulário
+$email = $_POST['email'];
+$senha = $_POST['senha'];
+
+// Verifica se o cliente existe com o email e senha fornecidos
+$query_cliente = "SELECT id_cliente, senha_cliente FROM LOVETEC.Cliente WHERE email_cliente = '$email'";
+$result_cliente = mysqli_query($conn, $query_cliente);
+
+if (mysqli_num_rows($result_cliente) > 0) {
+    // Cliente encontrado, verifica a senha
+    $cliente = mysqli_fetch_assoc($result_cliente);
+
+    // Verifica se a senha fornecida corresponde à senha armazenada (utilizando password_verify se usar hash)
+    if (password_verify($senha, $cliente['senha_cliente'])) {
+        // Senha correta, inicia a sessão
+        $_SESSION['id_cliente'] = $cliente['id_cliente'];
+        $_SESSION['email_cliente'] = $email;
+
+        // Redireciona para o painel do cliente
+        header("Location: cliente_dashboard.php");
+        exit();
+    } else {
+        // Senha incorreta
+        echo "Senha incorreta.";
+    }
+} else {
+    // Cliente não encontrado
+    echo "Email não cadastrado.";
+}
+?>
+
+
+<?php
+// Recebe os dados do formulário de cadastro
+$email = $_POST['email'];
+$senha = $_POST['senha'];
+
+// Cria o hash da senha
+$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+// Insere o cliente no banco de dados, com a senha já hasheada
+$query = "INSERT INTO LOVETEC.Cliente (email_cliente, senha_cliente) VALUES ('$email', '$senha_hash')";
+mysqli_query($conn, $query);
+?>
+
+<?php
+// Exemplo de cadastro de cliente com tratamento para email duplicado
+$email = $_POST['email'];
+$senha = $_POST['senha'];
+
+// Cria o hash da senha
+$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+$query = "INSERT INTO LOVETEC.Cliente (email_cliente, senha_cliente) VALUES ('$email', '$senha_hash')";
+if (mysqli_query($conn, $query)) {
+    echo "Cliente cadastrado com sucesso!";
+} else {
+    // Verifica se o erro foi de chave única (duplicação de email)
+    if (mysqli_errno($conn) == 1062) {
+        echo "Esse email já está cadastrado.";
+    } else {
+        echo "Erro ao cadastrar cliente: " . mysqli_error($conn);
+    }
+}
+?>
