@@ -16,8 +16,7 @@ $stmt = $pdo->query("SELECT * FROM cliente");
 // Exibe os dados de cada cliente em uma linha da tabela HTML
 while ($cliente = $stmt->fetch(PDO::FETCH_ASSOC)) {
     echo "<tr>";
-    echo "<td>" . htmlspecialchars($cliente['id']) . "</td>";
-    echo "<td>" . htmlspecialchars($cliente['nome_cliente']) . "</td>";
+    echo "<td>" . htmlspecialchars($cliente['nome_cliente']) . "<br> </td>";
     echo "</tr>";
 }
 

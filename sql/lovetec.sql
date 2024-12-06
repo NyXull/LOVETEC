@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS LOVETEC.Tipo_Telefone (
 CREATE TABLE IF NOT EXISTS LOVETEC.Veiculo (
  id_veiculo INT NOT NULL AUTO_INCREMENT,
  modelo VARCHAR(20) NOT NULL,
- placa VARCHAR(7) NOT NULL,
+ placa VARCHAR(8) NOT NULL,
  valor_diaria DECIMAL(10,2) NOT NULL,
  ano_fabricacao YEAR NOT NULL,
  cor VARCHAR(20) NOT NULL, PRIMARY KEY (id_veiculo)
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS LOVETEC.Endereco (
  bairro VARCHAR(20) NOT NULL,
  cidade VARCHAR(20) NOT NULL,
  estado VARCHAR(2) NOT NULL,
- cep VARCHAR(8) NOT NULL,
+ cep VARCHAR(9) NOT NULL,
  id_tipo_endereco INT NOT NULL, PRIMARY KEY (id_endereco), FOREIGN KEY (id_tipo_endereco) REFERENCES LOVETEC.Tipo_Endereco (id_tipo_endereco)
 );
 
