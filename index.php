@@ -15,9 +15,10 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
-                <th>Email</th>
+                <th>Data de Nascimento</th>
+                <th>Número de CNH</th>
+                <th>Endereço</th>
                 <th>Telefone</th>
             </tr>
         </thead>
@@ -25,7 +26,7 @@
             <!-- Aqui os dados da tabela cliente serão inseridos pelo PHP -->
             <?php
             // Inclui o script PHP que buscará os dados no banco
-            include 'teste.php';
+            include 'php\teste.php';
             ?>
         </tbody>
     </table>
