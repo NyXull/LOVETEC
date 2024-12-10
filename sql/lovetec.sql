@@ -1,13 +1,13 @@
 DROP DATABASE IF EXISTS LOVETEC;
 CREATE DATABASE LOVETEC; USE LOVETEC;
 
--- Tabela TipoEndereco
+-- Tabela Tipo_Endereco
 CREATE TABLE IF NOT EXISTS LOVETEC.Tipo_Endereco (
  id_tipo_endereco INT NOT NULL AUTO_INCREMENT,
  tipo_endereco VARCHAR(50) NOT NULL, PRIMARY KEY (id_tipo_endereco)
 );
 
--- Tabela TipoTelefone
+-- Tabela Tipo_Telefone
 CREATE TABLE IF NOT EXISTS LOVETEC.Tipo_Telefone (
  id_tipo_telefone INT NOT NULL AUTO_INCREMENT,
  tipo_telefone VARCHAR(50) NOT NULL, PRIMARY KEY (id_tipo_telefone)
@@ -47,12 +47,26 @@ CREATE TABLE IF NOT EXISTS LOVETEC.Cliente (
  id_cliente INT NOT NULL AUTO_INCREMENT,
  nome_cliente VARCHAR(100) NOT NULL,
  data_nasc DATE NOT NULL,
- num_cnh INT NOT NULL, UNIQUE(num_cnh),
+ num_cnh VARCHAR(11) NOT NULL, UNIQUE(num_cnh),
  email VARCHAR(100) NOT NULL, UNIQUE(email),
  senha VARCHAR(255),
  id_endereco INT NOT NULL,
  id_telefone INT NOT NULL, PRIMARY KEY (id_cliente), FOREIGN KEY (id_endereco) REFERENCES LOVETEC.Endereco (id_endereco), FOREIGN KEY (id_telefone) REFERENCES LOVETEC.Telefone (id_telefone)
 );
+
+-- Tabela Locacao
+CREATE TABLE IF NOT EXISTS LOVETEC.Locacao (
+ id_locacao INT NOT NULL AUTO_INCREMENT,
+ data_inicial DATE NOT NULL,
+ data_final DATE NOT NULL,
+ valor_diaria DECIMAL(10,2) NOT NULL,
+ valor_final DECIMAL(10,2) NOT NULL,
+ id_veiculo INT NOT NULL,
+ id_cliente INT NOT NULL,
+ status_locacao ENUM('pendente', 'aprovado', 'rejeitado') DEFAULT 'pendente', -- Novo campo para o status da locação
+PRIMARY KEY (id_locacao), FOREIGN KEY (id_veiculo) REFERENCES LOVETEC.Veiculo (id_veiculo), FOREIGN KEY (id_cliente) REFERENCES LOVETEC.Cliente (id_cliente)
+);
+
 
 -- Tabela Locadora
 CREATE TABLE IF NOT EXISTS LOVETEC.Locadora (
@@ -78,6 +92,12 @@ CREATE TABLE IF NOT EXISTS LOVETEC.Funcionario (
 CREATE TABLE IF NOT EXISTS LOVETEC.Sessao (
  id_sessao INT NOT NULL AUTO_INCREMENT,
  id_usuario INT NOT NULL,
- tipo_usuario ENUM('cliente', 'funcionario') NOT NULL,
- PRIMARY KEY (id_sessao)
+ tipo_usuario ENUM('cliente', 'funcionario') NOT NULL, PRIMARY KEY (id_sessao)
+);
+CREATE TABLE IF NOT EXISTS LOVETEC.Reserva (
+ id_reserva INT AUTO_INCREMENT PRIMARY KEY,
+ id_cliente INT,
+ id_veiculo INT,
+ data_reserva DATE,
+ status_reserva VARCHAR(50) DEFAULT 'Pendente', FOREIGN KEY (id_cliente) REFERENCES LOVETEC.Cliente(id_cliente), FOREIGN KEY (id_veiculo) REFERENCES LOVETEC.Veiculo(id_veiculo)
 );

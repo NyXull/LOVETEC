@@ -17,14 +17,15 @@ if (mysqli_num_rows($result_cliente) > 0) {
     // Cliente encontrado, iniciar sessão
     $cliente = mysqli_fetch_assoc($result_cliente);
     $id_usuario = $cliente['id_cliente'];
-    $tipo_usuario = 'cliente'; // Identifica que é um cliente
+    $_SESSION['tipo_usuario'] = 'cliente'; // Definir tipo de usuário como cliente
+    $_SESSION['id_usuario'] = $id_usuario; // Definir ID do usuário na sessão
 
     // Inserir na tabela de sessões
     $query_sessao = "INSERT INTO LOVETEC.Sessao (id_usuario, tipo_usuario) 
-                     VALUES ('$id_usuario', '$tipo_usuario')";
+                     VALUES ('$id_usuario', 'cliente')";
     mysqli_query($conn, $query_sessao);
 
-    header("Location: ../index.php"); // Redireciona para a página do cliente
+    header("Location: ../index.php"); // Redireciona para a página inicial
     exit();
 } else {
     // Verificar login de funcionário
@@ -35,15 +36,15 @@ if (mysqli_num_rows($result_cliente) > 0) {
         // Funcionário encontrado, iniciar sessão
         $funcionario = mysqli_fetch_assoc($result_funcionario);
         $id_usuario = $funcionario['id_funcionario'];
-        $tipo_usuario = 'funcionario'; // Identifica que é um funcionário
+        $_SESSION['tipo_usuario'] = 'funcionario'; // Definir tipo de usuário como funcionário
+        $_SESSION['id_usuario'] = $id_usuario; // Definir ID do usuário na sessão
 
-       
         // Inserir na tabela de sessões
         $query_sessao = "INSERT INTO LOVETEC.Sessao (id_usuario, tipo_usuario) 
-                         VALUES ('$id_usuario', '$tipo_usuario')";
+                         VALUES ('$id_usuario', 'funcionario')";
         mysqli_query($conn, $query_sessao);
 
-        header("Location: ../index.php"); // Redireciona para a página do funcionário
+        header("Location: ../index.php"); // Redireciona para a página inicial
         exit();
     } else {
         echo "Login inválido";

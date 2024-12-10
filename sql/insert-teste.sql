@@ -24,6 +24,12 @@ INSERT INTO LOVETEC.Telefone (numero_telefone, id_tipo_telefone) VALUES
 ('1123456789', 2),
 ('1932345678', 3);
 
+-- Inserindo clientes
+INSERT INTO LOVETEC.Cliente (nome_cliente, data_nasc, num_cnh, email, senha, id_endereco, id_telefone) VALUES
+('Carlos Silva', '1985-05-12', 123456789, 'carlossilva@gmail.com', 'supersenha', 1, 1),
+('Ana Pereira', '1990-11-20', 987654321, 'anapereira@gmail.com', 'supersenha', 2, 2),
+('Pedro Souza', '1982-02-15', 112233445, 'pedrosouza@gmail.com', 'supersenha', 3, 3);
+
 -- Inserindo veículos
 INSERT INTO LOVETEC.Veiculo (modelo, placa, valor_diaria, ano_fabricacao, cor) VALUES
 ('Fusca', 'ABC-1234', 100.00, 1975, 'Azul'),
@@ -31,16 +37,9 @@ INSERT INTO LOVETEC.Veiculo (modelo, placa, valor_diaria, ano_fabricacao, cor) V
 ('Fiesta', 'LMN-7890', 150.00, 2018, 'Branco');
 
 -- Inserindo locações
-INSERT INTO LOVETEC.Locacao (data_inicial, data_final, valor_diaria, valor_final, id_veiculo) VALUES
-('2024-12-01', '2024-12-07', 100.00, 700.00, 1),
-('2024-12-05', '2024-12-10', 200.00, 1000.00, 2),
-('2024-12-10', '2024-12-12', 150.00, 300.00, 3);
-
--- Inserindo clientes
-INSERT INTO LOVETEC.Cliente (nome_cliente, data_nasc, num_cnh, email, senha, id_endereco, id_telefone) VALUES
-('Carlos Silva', '1985-05-12', 123456789, 'carlossilva@gmail.com', 'supersenha', 1, 1),
-('Ana Pereira', '1990-11-20', 987654321, 'anapereira@gmail.com', 'supersenha', 2, 2),
-('Pedro Souza', '1982-02-15', 112233445, 'pedrosouza@gmail.com', 'supersenha', 3, 3);
+INSERT INTO LOVETEC.Locacao (data_inicial, data_final, valor_diaria, valor_final, id_veiculo, id_cliente, status_locacao) VALUES
+('2024-12-10', '2024-12-15', 150.00, 750.00, 1, 1, 'pendente'),
+('2024-12-11', '2024-12-16', 120.00, 600.00, 2, 2, 'aprovado');
 
 -- Inserindo locadoras
 INSERT INTO LOVETEC.Locadora (nome_locadora, cnpj, id_endereco, id_telefone) VALUES
