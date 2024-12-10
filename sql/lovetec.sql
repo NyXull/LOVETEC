@@ -24,16 +24,6 @@ CREATE TABLE IF NOT EXISTS LOVETEC.Veiculo (
  cor VARCHAR(20) NOT NULL, PRIMARY KEY (id_veiculo)
 );
 
--- Tabela Locacao
-CREATE TABLE IF NOT EXISTS LOVETEC.Locacao (
- id_locacao INT NOT NULL AUTO_INCREMENT,
- data_inicial DATE NOT NULL,
- data_final DATE NOT NULL,
- valor_diaria DECIMAL(10,2) NOT NULL,
- valor_final DECIMAL(10,2) NOT NULL,
- id_veiculo INT NOT NULL, PRIMARY KEY (id_locacao), FOREIGN KEY (id_veiculo) REFERENCES LOVETEC.Veiculo (id_veiculo)
-);
-
 -- Tabela Endereco
 CREATE TABLE IF NOT EXISTS LOVETEC.Endereco (
  id_endereco INT NOT NULL AUTO_INCREMENT,
